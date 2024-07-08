@@ -2,7 +2,9 @@
 
 Doctorado en Ciencias para El Desarrollo Sustentable
 
-## [Presentación](https://uninorte-my.sharepoint.com/:f:/g/personal/andresmv_uninorte_edu_co/EhByRVtMPAdLnwFtYmgb-Y0B2Nxk_SJNo2dqVFmcrmb31g?e=qan9Yb)
+## [Presentación](https://uninorte-my.sharepoint.com/:b:/g/personal/andresmv_uninorte_edu_co/ESA61_KtQeJGrgbvlF0Fe1wBfkc6j-Ykfkv_lF9T7sxhOQ?e=Hx3sxv)
+
+
 
 ## Contenido del curso
 
