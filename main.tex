@@ -1,0 +1,305 @@
+\documentclass{beamer}
+\usepackage{csquotes}
+\usepackage[spanish]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{width=8cm,compat=1.9}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage[
+backend=biber,
+style=authoryear,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{data_untrm.bib}
+
+\usetheme[sectionstyle=style2]{trigon} % Use trigon theme
+\title{Análisis de datos para la investigación}
+ 
+\date {\today}
+\author {Andrés Vargas}
+\institute {Universidad del Norte \\ Departamento de Economía}
+\begin{document}
+	\maketitle
+\section{Conceptos básicos para el análisis de datos}
+
+\begin{frame}{Propósitos del AD}
+Propósito de la actividad científica es explicar (¿Qué es una explicación?). Los datos, y su análisis nos ayudan a explicar, a responder \textit{¿Por qué pasan las cosas como pasan?}
+\begin{enumerate}
+    \item Datos: representación simbólica. Cuantitativa (medición de observaciones) o cualitativa (texto, imágenes,...)
+    \item Información: conocimiento que se obtiene sobre algo
+    \item Datos se convierten en información a través del análisis
+    \item Contribuyen a explicar a partir de: i) relaciones entre variables, ii) identificación de efectos causales, iii) predicción
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Datos y métodos de análisis}
+Los métodos de análisis adecuados están en función de
+\begin{itemize}
+    \item La pregunta a responder
+    \item El origen de los datos: observacionales, experimentales
+    \item El tipo de variables y su relación con el concepto medido
+    \begin{itemize}
+        \item Cuantitativas: discretas (\# estudiantes en clase), continuas (edad, peso)
+        \item Cualitativas: nominales (¿Fuma?: si, no), ordinales (nivel educativo: primaria, secundaria, universitario)
+    \end{itemize}
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Causalidad y predicción}
+
+Ejemplos
+
+\begin{enumerate}
+    \item El modelo indica que la sustancia A es mejor para anestesiar ratones que la sustancia B: exponer ratones a las dos sustancias y comparar las respuestas fisiológicas. Si el modelo es creíble entonces debe haber diferencia en la respuesta biológica. Todos los demás factores que pueden afectar la respuesta fisiológica han sido tenidos en cuenta
+    \item Cuáles son los factores que influencian la diversidad de aves en un fragmento de bosque. Tenemos una lista de influencias potenciales ¿Cuál es la combinación que mejor predice la diversidad de aves?
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Ruido y señal}
+
+El análisis de datos es un ejercicio estadístico. Los datos tienen ruido y señal ¿Cómo separamos?
+
+\begin{itemize}
+    \item Señal: información que intentamos detectar
+    \item Ruido: variabilidad no deseada que interfiere con la señal
+\end{itemize}
+
+¿El dinero nos hace felices? La gente más adinerada también pueden tener mejor trabajo, un mejor estatus social, ..., otros factores que también la hacen más felices. Por lo tanto, la correlación entre ingreso y felicidad es ruidosa
+    
+\end{frame}
+
+\begin{frame}{Podemos obtener conclusiones erróneas}
+
+\begin{itemize}
+    \item No hay correspondencia entre la pregunta de interés y el diseño experimental o la fuente de datos utilizados (quiere saber si las mujeres tienen una respuesta mayor que los hombres a un tratamiento médico, pero el diseño del experimento no tuvo en cuenta el sexo)
+    \item El modelo estadístico no está relacionado con el modelo teórico
+    \item Los datos no son confiables: mal diseño o ejecución del experimento, muestreo inadecuado,...
+    \item No se cumplen los supuestos del modelo estadístico: normalidad, ...
+    \item Presión por obtener resultados significativos
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Ejercicio}
+
+Revise cada uno de los artículos siguientes \cite{low_mouse} y \cite{loyn1987effects} y establezca la relación entre la pregunta de investigación, el método de recolección de datos, y el método de análisis de datos. Para ello
+
+\begin{enumerate}
+    \item Identifique la pregunta/objetivo de investigación ¿Busca establecer una relación causa-efecto o una predicción?
+    \item ¿Los datos son observacionales o experimentales? Describa como se obtuvieron los datos
+    \item ¿Cuál es el tipo de cada una de las variables utilizadas? (cuantitativa,...)
+    \item ¿Cómo se analizaron los datos? Distinga entre la variable dependiente y las independientes 
+    \item ¿Cuál es la conclusión que se deriva del análisis de datos?
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{La \textit{Lógica experimental}}
+
+Un experimento no es otra cosa que la variación \textit{deliberada} y \textit{controlada} de una variable para averiguar la respuesta de una variable de resultado. Nos interesa la \textbf{existencia} del efecto así como su \textbf{magnitud}
+
+\begin{itemize}
+    \item Observacionales: nos basamos en modelos estadísticos, técnicas de estimación e identificación de efectos. Muy común en economía y otras ciencias sociales
+    \item Experimentales: aislar otros factores, determinar la capacidad de detectar el efecto
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Planeación e implementación}
+
+\begin{itemize}
+    \item Definir el objetivo
+    \item Elegir la variable de respuesta: tipo de variable, capacidad para medirla bien
+    \item Factores y niveles: los factores son las variables que se varían deliberadamente, los niveles son los valores que puede tomar el factor. Por ejemplo, $T=1$ si toma la píldora y $T=0$ si no toma la píldora. Un tratamiento es la combinación de factores y niveles. $M=1$ si es mujer y $M=0$ si no es mujer, entonces $T=1$ y $M=0$ es un tratamiento
+    \item Plan experimental
+    \item Ejecución
+    \item Análisis de datos
+    \item Conclusiones
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Principios de la experimentación}
+
+\begin{enumerate}
+    \item Replicación: cada tratamiento es aplicado a unidades experimentales que son representativas de la población. Tamaño de muestra afecta la incertidumbre de las estimaciones y el poder de la prueba. Replicación $\neq$ repetición
+    \item Aleatorización: asignación de unidades a los tratamientos, el orden en el que se aplican los tratamientos, el orden en el que las respuestas son medidas. Evita la influencia de variables no observadas, asegura la validez de la estimación del error que se usa para la inferencia
+    \item Bloqueo: agrupación de unidades homogéneas entre si. 
+    
+
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+
+
+El gobierno implementa un programa de nutrición infantil en el que le entrega a los niños un complemento alimenticio. Quiere saber el efecto del programa. Su variable de resultado es un indicador de desnutrición aguda, $Y=Peso/Talla$. Sea $X=1$ si el niño estuvo en el programa y $X=0$ si el niño no estuvo en el programa. Expresamos la relación entre la desnutrición y la participación en el programa, $j$, para el niño $i$ como
+
+\begin{equation*}
+    Y_{ij}=\beta_0+\beta_1X_{ij}+\varepsilon_{ij}
+\end{equation*}
+
+    
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+
+\begin{equation*}
+    Y_{i}=\beta_0+\beta_1X_i+\varepsilon_i
+\end{equation*}
+
+El estado nutricional de un niño está en función de la participación en el programa y un término de error. 
+
+\begin{enumerate}
+    \item $Y_{ij}$: variable de respuesta. Continua
+    \item $X_{ij}$: factor, 2 niveles $(1,0)$. Categórica, nominal
+    \item $\varepsilon_{ij}$: error
+    \item $\beta_0$ y $\beta_1$: parámetros
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+
+\begin{itemize}
+    \item Nuestros datos son observaciones, $Y_{ij}$ y $X_{ij}$
+    \item Son una muestra de muchas posibles: variabilidad muestral
+    \item ¿Cómo se seleccionaron los datos que conforman la muestra?: ¿Aleatorización?
+    \item ¿Es el tamaño de la muestra suficiente para detectar el efecto?: poder
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+
+Los parámetros $\beta_0$, $\beta_1$ capturan la relación entre los factores y $X$
+
+\begin{itemize}
+    \item Son desconocidos. Los estimamos a partir de la muestra
+    \item Incertidumbre/precisión en su estimación: producto de la variabilidad muestral
+    \item Relación: ¿Correlación o efecto causal? Depende de su relación con el error $\varepsilon$
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+    El término de error recoge todo lo demás que afecta el estado nutricional y variación completamente aleatoria. Si no hay relación entre $\varepsilon$ y $X$ (lo desarrollaremos más adelante), entonces este modelo nos permite recoger el efecto de $X$ sobre $Y$
+\end{frame}
+
+\begin{frame}{El modelo de regresión lineal}
+
+\begin{equation*}
+    Y_{i}=\beta_0+\beta_1X_i+\varepsilon_i
+\end{equation*}
+
+¿Cómo nos aseguramos de que no haya relación entre $\varepsilon$ y $X$?
+
+\begin{itemize}
+    \item Datos experimentales: diseño experimental
+    \item Datos observacionales: no puede. Intenta identificar el efecto a través de otros métodos de estimación. Aprovecha situaciones que producen experimentos naturales
+\end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{El modelo de regresión lineal}
+
+Volviendo a nuestro ejemplo ¿Cómo sabemos si el programa funcionó? Comparamos el estado nutricional promedio de quienes participaron, $\bar{Y_1}$ con el de quienes no participaron, $\bar{Y_0}$, donde
+
+\begin{equation*}
+    \bar{Y_j}=\dfrac{1}{n_j}\sum_iY_{ij}
+\end{equation*}
+ \begin{itemize}
+     \item $H_0:\bar{Y_1}-\bar{Y_0}=0$; $H_a:\bar{Y_1}-\bar{Y_0}\neq 0$
+     \item Para saber si son diferentes los promedios debemos asegurarnos de que no es simple chance. Recuerde la variabilidad muestral
+ \end{itemize}
+     
+\end{frame}
+
+\begin{frame}{Modelo de regresión}
+Si los promedios son diferentes, ¿esto es debido a $X$? ¿Podrían ser otras factores?
+
+\begin{align*}
+    E(Y_{ij}|T_{ij}=0)&=\beta_0+E(\varepsilon_{ij}|T_{ij}=0)\\
+    E(Y_{ij}|T_{ij}=1)&=\beta_0+\beta_1+E(\varepsilon_{ij}|T_{ij}=1)\\
+    \end{align*}
+
+    Luego
+
+    \begin{equation*}
+        E(Y_{ij}|T_{ij}=1)-E(Y_{ij}|T_{ij}=0)=\beta_1+E(\varepsilon_{ij}|T_{ij}=1)-E(\varepsilon_{ij}|T_{ij}=0)
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    El promedio es un estimador del valor esperado, luego
+
+    \begin{align*}
+        \bar{Y}_0&=\hat{\beta}_0\\
+        \bar{Y}_1&=\hat{\beta}_0+\hat{\beta}_1
+    \end{align*}  
+
+    Por lo tanto 
+
+    \begin{equation*}
+        \bar{Y}_1-\bar{Y}_0=\hat{\beta}_1
+    \end{equation*}
+    Y 
+    \begin{equation*}
+        \hat{\beta}_1=\beta_1 \quad \text{si}\quad E(\varepsilon_{ij}|T_{ij}=1)=E(\varepsilon_{ij}|T_{ij}=0)
+    \end{equation*}
+
+    El estimador corresponde al efecto causal, la diferencia en $Y$ atribuible únicamente a $X$, si no hay relación entre el error y $X$
+\end{frame}
+
+\begin{frame}{Recapitulando}
+
+\begin{enumerate}
+    \item Para explicar nos interesa capturar la relación causa-efecto entre $X$ y $Y$
+    \item Estadísticamente esto requiere que eliminemos las potenciales fuentes de relación entre el error y $X$. Esto es lo que buscamos lograr con el diseño experimental. Justifica el análisis de regresión y ANOVA
+    \item Con datos observacionales necesitamos otras estrategias (no es tema de este curso)
+\end{enumerate}
+    
+\end{frame}
+
+\section{Estadística inferencial y análisis de datos}
+
+\begin{frame}{Definición}
+
+Es el conjunto de métodos para inducir a partir de una muestra el comportamiento de una población. Inferir las propiedades de una distribución de probabilidad subyacente
+
+\begin{itemize}
+    \item Muestra: colección de observaciones de una población
+    \item Estadísticas: características de la muestra (promedio, $\hat{\beta}$)
+    \item Características de la población: parámetros (media poblacional/valor esperado, $\beta$)
+    \item Muestra aleatoria: cada observación tiene la misma probabilidad de ser incluida en la muestra
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Variabilidad muestral}
+
+Tomamos 2 muestras de tamaño n de una población de tamaño N. Para cada muestra calculamos el promedio de la variable $Y$. Con seguridad serán diferentes, ¿Por qué?
+
+\begin{itemize}
+    \item Variabilidad natural entre los individuos
+    \item Error de medición: instrumentos de medición imperfecto
+\end{itemize}
+
+    Realice el ejercicio de simulación simul1.R
+\end{frame}
+
+\begin{frame}{Distribución de probabilidad}
+    
+\end{frame}
+
+\printbibliography
+
+\end{document}
