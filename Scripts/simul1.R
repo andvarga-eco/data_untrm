@@ -28,7 +28,12 @@ for(i in 1:100){
   ys<-sample(Y,size=50)
   y[i]<-mean(ys)
 }
+
+#5. Observamos como se comporta el promedio (estimador del valor esperado) en muchas muestras
+
 mean(y)
+sd(y)
 hist(y,prob=TRUE)
 lines(density(y))
 
+#6. Repita el ejercicio usando muestras de tamañ0 10, 30, 100. Compare
