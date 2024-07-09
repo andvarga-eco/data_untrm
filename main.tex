@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{amsmath}
+\usepackage{pgfplots}
+
 \usepackage[
 backend=biber,
 style=authoryear,
@@ -296,9 +298,231 @@ Tomamos 2 muestras de tamaño n de una población de tamaño N. Para cada muestr
     Realice el ejercicio de simulación simul1.R
 \end{frame}
 
-\begin{frame}{Distribución de probabilidad}
+\begin{frame}{Probabilidad \footnote{Se recomienda este \href{https://www.probabilitycourse.com/chapter1/1_1_0_what_is_probability.php}{\textcolor{blue}{texto}}}}
+
+\begin{itemize}
+    \item Aleatoriedad e incertidumbre: nuestro conocimiento sobre el resultado es limitado, por lo tanto no sabemos con certeza qeu pasará
+    \item Frecuencia relativa: por ejemplo, si lanzo una moneda el número total de veces que sale cara sobre el total de lanzamientos
+    \item Creencia subjetiva: cuantificación de lo que creemos que pasará
+    \item Axiomas de probabilidad
+\end{itemize}
     
 \end{frame}
+
+\begin{frame}{Probabilidad}
+
+Antes de ejecutar un experimento, (ej. lanzar un dado) no conocemos el resultado. Después de ejecutarlo conocemos su resultado. El conjunto de todos los resultados posibles es el espacio muestral
+
+\begin{itemize}
+    \item Lanzar una moneda una vez: $S=\{H,T\}$
+    \item Lanzar una moneda dos veces: $S=\{(H,H),(H,T),(T,H),(T,T)\}$
+    \item Evento: un subconjunto del espacio muestral
+    \item El propósito es asignar una probabilidad a ciertos eventos
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Probabilidad}
+
+Axiomas. Decimos que $P(A)$ es una medida de probabilidad del evento A
+
+\begin{enumerate}
+    \item Axioma 1: Para cualquier evento A, $P(A)\geq 0$
+    \item Axioma 2: La probabilidad del espacio muestral $S$ es $P(S)=1$
+    \item Axioma 3: Si $A_1,A_2,...$ son eventos mutuamente excluyentes, entonces $P(A_1\cup A_2 \cup A_3...)=P(A_1)+P(A_2)+P(A_3)+... $
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Probabilidad condicional}
+
+Probabilidad de la ocurrencia de un evento dada la ocurrencia de otro evento. Otra manera de verlo, en la medida que obtenemos más información, ¿cómo actualizamos la probabilidad del evento de interés?
+
+Si el 23\% de los días son lluviosos, entonces $P(R)=0.23$. Si le digo que el día está nublado ¿Cuál es la probabilidad de lluvia en este día? $P(R|C)$ donde $C$ significa que está nublado. De manera general, si $A$ y $B$ son dos eventos, entonces
+
+\begin{equation*}
+    P(A|B)=\dfrac{P(A\cap B)}{P(B)}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Probabilidad condicional}
+    Lanzo un dado. Definimos el evento $A$ como la ocurrencia de un número impar, $A=\{1,3,5\}$. Sea el evento $B$ la ocurrencia de un número menor o igual a 3, $B=\{1,2,3\}$
+
+    \begin{itemize}
+        \item $P(A)=\dfrac{|A|}{|S|}=\dfrac{3}{6}=\dfrac{1}{2}$
+        \item $P(B)=\dfrac{|B|}{|S|}=\dfrac{3}{6}=\dfrac{1}{2}$
+        \item $P(A\cap B)=\dfrac{|A|\cap B}{|S|}=\dfrac{1}{3}$
+        \item $P(A|B)=\dfrac{2}{3}$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Probabilidad condicional}
+
+Dos eventos son independientes si uno no contiene información sobre el otro
+\vspace{2mm}
+\begin{block}{Independencia}
+Dos eventos A y B son independientes si $P(A\cap B)=P(A)P(B)$
+\end{block}
+
+Por lo tanto $P(A|B)=P(A)$
+  
+\end{frame}
+
+\begin{frame}{Variable aleatoria}
+
+Una variable aleatoria es una función de valor real que asigna un valor numérico a cada resultado posible de un experimento (proceso por el cual observamos algo incierto). Por ejemplo, si lanzo una moneda y defino la variable $X=1$ si la moneda cae en cara y $X=0$ si no cae en cara
+
+\vspace{2mm}
+
+\begin{block}{Variable aleatoria}
+Una variable aleatoria $X$ es una función del espacio muestral, $S$, a los números reales
+$X:S\rightarrow \mathbb{R}$
+    
+\end{block}
+    
+\end{frame}
+
+\begin{frame}{Distribución de probabilidad}
+
+Es una función que describe las probabilidades de sus valores posibles. Para variables discretas comprende las probabilidades medibles para cada resultado posible. Las variables continuas no están restringidas a un valor determinado, luego hay infinitos resultados posibles. Para variables continuas hablas de la probabilidad de un rango dado de valores
+    
+\end{frame}
+
+\begin{frame}{DP: Variables discretas}
+
+Si $X$ es una variable discreta con rango $R_x=\{x_1,x_2,...,x_k\}$, entonces las probabilidades de eventos particulares está descrita por la función de masa de probabilidad (PMF)
+
+\begin{equation*}
+    P_X(x_k)=P(X=x_k), \quad \text{para} \quad k=1,2,3,...
+\end{equation*}
+
+Lanzo una moneda dos veces. Sea $X$ el número de caras que se observan. El espacio muestral es $S=\{(H,H),(H,T),(T,T),(T,H)\}$, luego $R_X=\{0,1,2\}$, y la función de probabilidad 
+\begin{equation*}
+P_X(0)=\dfrac{1}{4}; \quad P_X(1)=\dfrac{1}{4}+\dfrac{1}{4}=\dfrac{1}{2}; \quad P_X(2)=\dfrac{1}{4}    
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}{DP: Variable discreta}
+\begin{tikzpicture}
+\begin{axis}[
+ybar,
+    title={Función de probabilidad},
+    xlabel={$x$},
+    ylabel={$P_X(x)$},
+    xmin=-1, xmax=3,
+    ymin=0, ymax=1,
+    xtick={0,1,2},
+    ytick={0.25,0.5,0.75,1},
+    ]
+\addplot[
+    color=red,
+    mark=square,
+    ]
+    coordinates {
+    (0,0.25)(1,0.5)(2,0.25)
+    };
+\end{axis}
+\end{tikzpicture}
+    
+\end{frame}
+\begin{frame}{Algunas distribuciones discretas}
+
+Sea $X$ una variable aleatoria discreta tal que toma el valor de $1$ si se cumple una condición y $0$ si no se cumple
+
+\begin{block}{Bernoulli}
+    Una variable $X$ tiene una distribución de Bernoulli con el parámetro $p$ si su PMF restá dada por
+    \begin{equation*}
+    P_X(x)=
+        \begin{cases}
+p \quad \text{si} \quad x=1\\
+1-p \quad \text{si} \quad x=0\\
+0 \quad \text{en otro caso}
+        \end{cases}
+    \end{equation*}
+\end{block}
+    
+\end{frame}
+
+\begin{frame}{Algunas distribuciones discretas}
+
+La distribución de Bernoulli es muy útil cuando nuestro estudio analiza variables que capturan la presencia o ausencia de algo. Por ejemplo, los animales viven o mueren, cierta especie está presente o ausente en el bosque, el individuo tomó el bus para ir al trabajo o no tomó el bus para ir al trabajo,...
+    
+\end{frame}
+
+\begin{frame}{Algunas distribuciones discretas}
+
+La distribución de probabilidad del número de \textit{éxitos} en $n$ ensayos independientes de Bernoulli se llama una distribución binomial
+
+\begin{block}{Bernoulli}
+    Una variable $X$ tiene una distribución de Binomial con parámetros $p$ y $n$ si su PMF restá dada por
+    \begin{equation*}
+    P_X(k)=
+        \begin{cases}
+        \binom{n}{k}p^k(1-p)^{n-k} \quad \text{para}\quad k=0,1,2,...,n\\
+        0 \quad \text{en otro caso}
+        \end{cases}
+    \end{equation*}
+\end{block}
+    
+\end{frame}
+
+\begin{frame}{Función de de distribución acumulada}
+
+La CDF de la variable aleatoria $X$ se define como 
+\begin{block}{CDF}
+\begin{equation*}
+F_X(x)=P(X\leq x)    \quad \text{para todo} \quad x\in \mathbb{R}
+\end{equation*}
+    
+\end{block}
+
+Si tenemos la PMF, podemos hallar la CDF como
+
+\begin{equation*}
+    F_X(x)=\sum_{x_k\leq x}P_X(x_k)
+\end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Valor esperado}
+
+\begin{block}{Valor esperado}
+    Sea $X$ una variable aleatoria discreta con rango $R_X=\{x_1,x_2,...\}$. El valor esperado es
+
+    \begin{equation*}
+        E(X)=\sum_{x_k\in R_x}x_kP(x_k)
+    \end{equation*}
+\end{block}
+    
+\end{frame}
+
+\begin{frame}{Varianza}
+
+\begin{block}{Varianza}
+La varianza de la variable aleatoria $X$ con media $E(X)=\mu_X$ es
+
+\begin{equation*}
+    Var(X)=E[(X-\mu_X)^2]
+\end{equation*}
+    
+\end{block}
+
+    Se puede mostrar que
+
+    \begin{equation*}
+        Var(X)=E(X^2)-\mu^2_X
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Variable aleatoria continua}
+
+\begin{block}{Variable aleatoria continua}
+    Decimos que la variable aleatoria $X$ es continua si su CDF $F_X(x)$ es una función continua para todo $x \in \mathbb{R}$
+\end{block}
+    
+\end{frame}
+
 
 \printbibliography
 
