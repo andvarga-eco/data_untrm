@@ -520,6 +520,73 @@ La varianza de la variable aleatoria $X$ con media $E(X)=\mu_X$ es
 \begin{block}{Variable aleatoria continua}
     Decimos que la variable aleatoria $X$ es continua si su CDF $F_X(x)$ es una función continua para todo $x \in \mathbb{R}$
 \end{block}
+
+Los valores de la variable caen sobre la recta real. Como hay un número infinito de puntos sobre la recta real, aún dentro de un intervalo, la probabilidad de observar un valor particular es cero. Por eso no hablamos de la PMF
+    
+\end{frame}
+
+\begin{frame}{Variable aleatoria continua: pdf}
+    Indica la probabilidad de que la variable aleatoria caiga dentro de un rango determinado de valores
+
+    \begin{block}{pdf}
+    Una variable aleatoria $X$ con CDF absolutamente continua $F_X(x)$. La función $f_X(x)$ se define como
+
+    \begin{equation*}
+        f_X(x)=\dfrac{dF_X(x)}{dx}=F_X'(x), \quad \text{si es diferenciable en} \quad x 
+    \end{equation*}
+        
+    \end{block}
+
+    Como la pdf es la derivada de la CDF, entonces
+
+    \begin{equation*}
+        F_X(x)=\int_{-\infty}^x f_X(u) \, du
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Variable aleatoria continua}
+
+Considere la variable aleatoria continua $X$ cuya pf está dada por
+
+\begin{equation*}
+    f_X(x)=
+    \begin{cases}
+        e^{-x} \quad \text{si} \quad x\geq 0\\
+        0 \quad \text{en otro caso}
+    \end{cases}
+\end{equation*}
+
+De donde 
+
+\begin{equation*}
+    F_X(x)=
+    \begin{cases}
+        1-e^{-x} \quad \text{si} \quad x\geq 0\\
+        0 \quad \text{en otro caso}
+    \end{cases}
+\end{equation*}
+
+En una hoja de excel grafique ambas funciones para valores de $X$ en el intervalo $[0,4]$ usando incrementos de 0.1 unidades. Halle la probabilidad de $1<X<3$
+    
+\end{frame}
+
+\begin{frame}{Valor esperado}
+
+En el caso de una variable aleatoria continua, el valor esperado está dado por
+
+\begin{equation*}
+    E(X)=\int_{-\infty}^{\infty}xf_X(x)dx
+\end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Distribución Normal}
+
+Si $X$ es una variable aleatoria con distribución normal con media $\mu$ y varianza $\sigma^2$, $X\sim N(\mu,\sigma^2)$, entonces
+
+\begin{equation*}
+    f_X(x)=\dfrac{1}{\sigma\sqrt{2\pi}}exp\left\{-\dfrac{(x-\mu)^2}{2\sigma^2}\right\}
+\end{equation*}
     
 \end{frame}
 
