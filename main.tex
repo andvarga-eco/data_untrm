@@ -7,6 +7,7 @@
 \usepackage{multirow}
 \usepackage{amsmath}
 \usepackage{pgfplots}
+\usepackage{enumitem}
 
 \usepackage[
 backend=biber,
@@ -351,7 +352,7 @@ Si el 23\% de los días son lluviosos, entonces $P(R)=0.23$. Si le digo que el d
     \begin{itemize}
         \item $P(A)=\dfrac{|A|}{|S|}=\dfrac{3}{6}=\dfrac{1}{2}$
         \item $P(B)=\dfrac{|B|}{|S|}=\dfrac{3}{6}=\dfrac{1}{2}$
-        \item $P(A\cap B)=\dfrac{|A|\cap B}{|S|}=\dfrac{1}{3}$
+        \item $P(A\cap B)=\dfrac{|A|\cap |B|}{|S|}=\dfrac{1}{3}$
         \item $P(A|B)=\dfrac{2}{3}$
     \end{itemize}
 \end{frame}
@@ -590,6 +591,161 @@ Si $X$ es una variable aleatoria con distribución normal con media $\mu$ y vari
     
 \end{frame}
 
+\begin{frame}{Otras distribuciones}
+
+Para pruebas estadísticas, solemos usar las siguientes distribuciones
+
+\begin{itemize}
+\small{
+    \item $z$ o normal estándar: pdf de una variable aleatoria $N(0,1)$. Es el la razón entre la difrencia de la estadística muestral con su valor poblacional y la desviación estándar poblacional
+    \item $t$ de student: probabilidad de una variable aleatoria que es la razón de la diferencia entre la estadística muestral con su valor poblacional y la desviación estándar muestral. Test de medias, hipótesis sobre los parámetros individuales en un modelo de regresión
+    \item $\chi ^2$ es la distribución de una variable que es el cuadrado de los valores de una distribución normal estándar. No puede ser negativa. Las varianzas tienen esta distribución
+    \item $F$ representa la distribución de probabilidad de una variable que es la razón de dos $\chi ^2$ independientes, cada una dividida por sus grados de libertad. Comparar varianzas. ANOVA y pruebas de significancia conjunta de parámetros en un modelo de regresión lineal
+    }
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Otras distribuciones}
+
+\begin{figure}
+\centering
+        \includegraphics[scale=0.8]{distribuciones.PNG}
+        
+        \end{figure}
+    
+\end{frame}
+
+\begin{frame}{Pruebas de hipótesis}
+
+Ya tenemos los ingredientes para hacer pruebas
+
+\begin{enumerate}
+    \item Queremos averiguar algo sobe la población. Hipótesis
+    \item Para ello usamos una muestra
+    \item Con esa muestra estimamos el valor poblacional
+    \item Pero, si hubiésemos tenido otra muestra, nuestra estimación sería diferente. Variabilidad muestral
+    \item El estimador entonces es una variable aleatoria
+    \item Por lo tanto está caracterizado por una función de distribución
+    \item En consecuencia, nuestra estimación estará a alguna distancia del valor poblacional de acuerdo a la hipótesis
+    \item Necesito una regla para decidir si el valor estimado es consistente con la hipótesis
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Pruebas de hipótesis}
+
+Para decidir si es consistente necesitamos un criterio
+
+\begin{itemize}
+    \item Distancia entre el valor estimado y el de la hipótesis
+    \item Debemos tener en cuenta la variabilidad del estimador: desviación estándar del estimador
+    \item ¿La desviación que observamos cómo es en relación a la desviación típica?
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: ejemplo}
+    Recuerde nuestro ejercicio de simulación. Tome una muestra cualquiera de tamaño 30 de la población. Calcule el promedio. Para esa muestra obtuve $\bar{y}=166.6$. Este es un valor estimado de la media poblacional, $E(Y)$
+    \begin{enumerate}
+        \item $H_0:E(Y)=165$ Hipótesis: la media poblacional de Y es 165. ¿Es el valor estimado consistente con esa hipótesis del valor poblacional?
+        \item Distancia entre el estimado y la la hipótesis: $164.6-165$
+        \item Debido a la variabilidad muestral puede haber obtenido otros promedios. Desviación estándar del promedio estimado con todas las muestras posibles de tamaño $n$. No lo conocemos, pero lo estimamos. Error estándar
+        \item $s.e(\bar{y})=sd(y)/\sqrt{n}=2.529$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: ejemplo}
+    \begin{enumerate}[start=5]
+        \item Razón entre la distancia y la desviación: $\dfrac{\bar{y}-E(Y)_{H_O}}{s.e(\bar{y})}=\dfrac{164.6-165}{2.529}=-0.146$
+        \item La desviación observada respecto a la hipótesis es -0.14 veces la desviación estándar (estimada) del estimador
+        \item Se distribuye como una $t$ de student
+        \item Para poder saber si es consistente con la hipótesis, necesitamos una hipótesis alternativa. 
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: ejemplo}
+
+\begin{enumerate}[start=9]
+    \item Defino $H_1:E(Y)\neq 165$. Puede haber definido que era mayor o menor. 
+    \item Para una distribución $t$ con 29 grados de libertad el 95\% de las observaciones está entre -2.045 y 2.045. El 95\% de las muestras arrojaría un valor en dicho intervalo
+    \item Mi valor estimado y por lo tanto el $t$ calculado está dentro del 95\%. No es raro que haya encontrado este valor
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: ejemplo}
+
+\begin{itemize}
+    \item Si la hipótesis nula es correcta, $H_0=165$, entonces mi estadística $t$ debe estar dentro de este intervalo del 95\% (nota: puede haber definido un intervalo diferente)
+    \item Si mi estadística cae por fuera de dicho intervalo, entonces mis datos rechazan la $H_0$ a favor de $H_1$
+    \item En este caso, como $t leg|t_c|$ entonces no rechazo la hipótesis
+    \item Conclusión: mi valor estimado, 164.6, no es estadísticamente diferente de 165
+    \item Repita el ejemplo pero ahora use un tamaño de muestra $n=10$ ¿Se mantiene la conclusión?
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: errores}
+
+La mayoría de las veces comparamos la media de la variable de resultado para diferentes grupos. En ese caso formulamos la hipótesis nula, por ejemplo para dos grupos, como $H_0: \bar{y}_1-\bar{y}_2=0$. Por ejemplo, en el caso del paper de \cite{low_mouse} nos interesa la diferencia en la respuesta fisiológica entre los que se les administra la sustancia Isoflurane, $I$ y los que reciben Alpha Chloralose, $A$. Sea la variable de respuesta la tasa de respiración, entonces la hipótesis es
+
+\begin{align*}
+    H_0:& \bar{y}_I-\bar{y}_A=0\\
+    H_1:& \bar{y}_I-\bar{y}_A \neq 0
+\end{align*}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: errores}
+
+Lo anterior lo puedo reformular de la siguiente manera. Definimos la variable $T=1$ si se le administró la sustancia $I$ y $T=0$ si se le administró la sustancia $A$
+
+\begin{equation*}
+    y_i=\alpha+\beta T+ e
+\end{equation*}
+
+De acá, podemos mostrar que $\bar{y}_I=\hat{\alpha}+\hat{\beta}$,  y $\bar{y}_A=\hat{\alpha}$, luego $\bar{y}_I-\bar{y}_A=\hat{\beta}$. De donde
+
+\begin{equation*}
+    H_0:\beta=0
+\end{equation*}
+    Si los datos soportan la hipótesis, digo que no hay efecto, que el coeficiente no es significativo. Si rechazan la hipótesis, hay evidencia de efecto, coeficiente significativo.
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: errores}
+
+Nuestra conclusión puede ser errada, en relación con la situación real
+
+\begin{figure}
+\centering
+        \includegraphics[scale=0.8]{error.PNG}
+        
+        \end{figure}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: significancia}
+
+En nuestro ejemplo elegimos el intervalo de 95\%. Por fuera de ese intervalo está el 5\%, a este lo llamamos $\alpha$
+\begin{itemize}
+    \item $\alpha$: nivel de significancia. Probabilidad de rechazar la hipótesis nula cuando es cierta. Si $\alpha=0.05$, solo el 5\% de las muestras posibles arrojaría un valor por fuera del intervalo del 95\% del estadístico. Si el estadístico que obtengo, esta por fuera de dicho intervalo, entonces la probabilidad de rechazar la nula siendo correcta es inferior al 5\%
+    \item Nivel de confianza: $1-\alpha$
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Prueba de hipótesis: p-value}
+
+La probabilidad de obtener un valor tan o más extremo al observado si la hipótesis nula es cierta. Si el estadístico tienen un valor grande quiere decir que estamos en la cola de la distribución, en consecuencia la probabilidad de obtener esos valores es pequeña
+\begin{figure}
+\centering
+        \includegraphics[scale=0.5]{twotailed.PNG}
+        
+        \end{figure}
+
+    
+\end{frame}
 
 \printbibliography
 
