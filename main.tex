@@ -691,8 +691,8 @@ Para decidir si es consistente necesitamos un criterio
 La mayoría de las veces comparamos la media de la variable de resultado para diferentes grupos. En ese caso formulamos la hipótesis nula, por ejemplo para dos grupos, como $H_0: \bar{y}_1-\bar{y}_2=0$. Por ejemplo, en el caso del paper de \cite{low_mouse} nos interesa la diferencia en la respuesta fisiológica entre los que se les administra la sustancia Isoflurane, $I$ y los que reciben Alpha Chloralose, $A$. Sea la variable de respuesta la tasa de respiración, entonces la hipótesis es
 
 \begin{align*}
-    H_0:& \bar{y}_I-\bar{y}_A=0\\
-    H_1:& \bar{y}_I-\bar{y}_A \neq 0
+    H_0:& E(y_I)-E(y_A)=0\\
+    H_1:& E(y_I)-E(y_A)\neq
 \end{align*}
     
 \end{frame}
@@ -702,7 +702,7 @@ La mayoría de las veces comparamos la media de la variable de resultado para di
 Lo anterior lo puedo reformular de la siguiente manera. Definimos la variable $T=1$ si se le administró la sustancia $I$ y $T=0$ si se le administró la sustancia $A$
 
 \begin{equation*}
-    y_i=\alpha+\beta T+ e
+    y_i=\alpha+\beta T+ \varepsilon
 \end{equation*}
 
 De acá, podemos mostrar que $\bar{y}_I=\hat{\alpha}+\hat{\beta}$,  y $\bar{y}_A=\hat{\alpha}$, luego $\bar{y}_I-\bar{y}_A=\hat{\beta}$. De donde
@@ -746,6 +746,352 @@ La probabilidad de obtener un valor tan o más extremo al observado si la hipót
 
     
 \end{frame}
+
+\section{Modelos lineales}
+
+\begin{frame}{Estimación de parámetros}
+
+Con los datos del experimento, los investigadores plantean el siguiente modelo para averiguar el efecto de la sustancia aplicada sobre la respuesta fisiológica de los ratones
+
+\begin{equation*}
+    y_i=\beta_0+\beta_1 T_i+e_i
+\end{equation*}
+
+Dos preguntas clave
+
+\begin{enumerate}
+    \item ¿Cómo estimo los valores de $\beta_0$ y $\beta_1$?
+    \item Más importante aún, ¿bajo que circunstancias puedo interpretar los parámetros estimados en términos de una relación causa efecto?
+\end{enumerate}
+
+Nos ocuparemos de la primera, por ahora
+   
+\end{frame}
+
+\begin{frame}{Estimación de parámetros}
+
+Empecemos por el caso más simple
+\begin{equation*}
+    y_i=\beta_0+\beta_1x_i+e_i; \quad i=1,2,...,n
+\end{equation*}
+
+con $e_i\sim (0,\sigma^2)$ y donde $y_i$ y $x_i$ son los valores de las variables para el individuo/unidad experimental $i$. Los parámetros desconocidos son $\beta_0, \beta_1, \sigma^2$.
+    
+\end{frame}
+
+\begin{frame}{Estimación de parámetros: MCO}
+
+Para estimar los valores de los parámetros, podemos usar el estimador MCO. Definimos la suma de cuadrado de los errores como
+    \begin{equation*}
+        \sum_i^ne_i^2=\sum_i^n(y_i-(\beta_0+\beta_1x_i))^2
+    \end{equation*}
+    Los estimadores $\hat{\beta}_0$ y $\hat{\beta_1}$ son aquellos que minimizan la suma de cuadrado de los errores
+\end{frame}
+
+\begin{frame}{Estimación de parámetros}
+
+Al realizar las condiciones de primer orden, y despejar, obtenemos
+
+\begin{align*}
+    \hat{\beta}_1&=\dfrac{\sum_i^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_i^n(x_i-\bar{x})^2}\\
+    \hat{\beta}_0&=\bar{y}-\hat{\beta_1}\bar{x}
+\end{align*}
+  Al aplicar los parámetros estimados a nuestra variable $x$ obtenemos el valor predicho de $y$
+
+  \begin{equation*}
+      \hat{y}_i=\hat{\beta}_0+\hat{\beta}_1x_i
+  \end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Estimación de parámetros}
+    De lo anterior definimos los residuales como
+
+    \begin{equation*}
+        \hat{e}_i=y_i-\hat{y_i}
+    \end{equation*}
+
+    donde además
+
+    \begin{equation*}
+        \sum_i^n\hat{e}_i=0
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Estimación de parámetros}
+
+Para estimar la varianza del estimador, empezamos por escribir
+\begin{equation*}
+    \hat{\beta}_1=\beta_1+\dfrac{\sum_i^n(x_i-\bar{x})e_i}{\sum_i^n(x_i-\bar{x})^2}
+\end{equation*}
+
+Si los errores son independientes entre individuos, y además la varianza del error no depende de los valores de $x$, homocedasticidad, $\Var(e|x)=\sigma^2$
+
+\begin{equation*}
+    Var(\hat{\beta}_1)=\dfrac{\sigma^2}{\sum_i^n(x_i-\bar{x})^2}
+\end{equation*}
+
+\end{frame}
+
+    \begin{frame}{Estimación de parámetros}
+
+    En la ecuación anterior $\sigma^2$ es un parámetro poblacional. Lo estimamos con los residuales, $\hat{e}$. Se puede mostrar que
+
+    \begin{equation*}
+        \hat{\sigma}^2=\dfrac{1}{n-2}\sum_i^ne_i^2
+    \end{equation*}
+
+    Luego el estimador de la varianza del estimador sería
+
+   \begin{equation*}
+    \hat{Var}(\hat{\beta}_1)=\dfrac{\hat{\sigma}^2}{\sum_i^n(x_i-\bar{x})^2}
+\end{equation*} 
+
+\end{frame}
+
+\begin{frame}
+Y la desviación estándar del estimador de la varianza, error estándar, sería
+
+\begin{equation*}
+    se(\hat{\beta}_1)=\dfrac{\hat{\sigma}}{\sqrt{\sum_i^n(x_i-\bar{x})^2}}
+\end{equation*}
+        Note que entre menor sea la variabilidad de la variable $x$ mayor será el error estándar. Revise la formula del estádistico $t$ y discuta las implicaciones que esto tiene sobre la prueba de hipótesis
+    \end{frame}
+
+    \begin{frame}{Bondad de ajuste}
+
+    Note que para cualquier modelo estimado podemos escribir
+
+    \begin{equation*}
+        y_i=\hat{y}_i+\hat{e}_i
+    \end{equation*}
+
+    Luego la variabilidad total de $y$ puede ser descompuesta entre aquella explicada por el modelo, y aquella explicada por el residual
+            
+    \end{frame}
+
+\begin{frame}{Bondad de ajuste}
+    Definimos
+
+    \begin{align*}
+        SST&=\sum_i(y_i-\bar{y})^2\\
+        SSE&=\sum_i(\hat{y}_i-\bar{y})^2\\
+        SSR&=\sum_i\hat{e}_i^2
+    \end{align*}
+De donde
+
+\begin{align*}
+    SST&=SSE+SSR\\
+    R^2&=SSE/SST=1-SSR/SST
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Regresión múltiple}
+
+En el caso de  múltiples variables independientes, el modelo de regresión lineal sería
+
+\begin{equation*}
+    y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+...+\beta_kx_{ki}+e_i
+\end{equation*}
+
+Definiendo la suma al cuadrado de los residuales, puede mostrarse que el estimador MCO de los parámetros corresponde a la formula
+
+\begin{equation*}
+    \boldsymbol{\hat{\beta}}=(\mathbf{X'X})^{-1}\mathbf{X'Y}
+\end{equation*}
+
+donde $\boldsymbol{\hat{\beta}}$ es un vector $1$x$k$ de regresores y $\mathbf{X}$ y $\mathbf{Y}$ son las matrices de datos de dimensiones $N$x$K$ y $N$x$1$
+   
+\end{frame}
+
+\begin{frame}{Regresión múltiple}
+
+La fomrula anterior requiere que no haya multicolinealidad perfecta entre las variables independientes. Es decir, que una de ellas no pueda ser expresada como una combinación lineal perfecta de las otras
+    
+\end{frame}
+
+\begin{frame}{Regresión múltiple}
+
+Interpretación de los coeficientes. Sea $\Delta x$ el cambio en la variable $x$ y dado que
+
+\begin{equation*}
+    \hat{y}=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2+...+\hat{\beta}_kx_k
+\end{equation*}
+
+entonces
+
+\begin{equation*}
+    \Delta\hat{y}=\hat{\beta}_0+\hat{\beta}_1\Delta x_1+\hat{\beta}_2\Delta x_2+...+\hat{\beta}_k\Delta x_k
+\end{equation*}
+
+Si suponemos $\Delta x_2=\Delta x_3=...=\Delta x_k=0$, entonces
+
+\begin{equation*}
+    \dfrac{\Delta \hat{y}}{\Delta x_1}=\hat{\beta}_1
+\end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Regresión múltiple}
+
+Los coeficientes estimados los interpretamos como el cambio en el valor predicho por cada cambio de una unidad en la variable $x_k$ dado que las demás variables están constantes 
+    
+\end{frame}
+
+\begin{frame}{Efecto causal}
+
+Recuerde nuestra segunda pregunta ¿Bajo que circunstancias podemos interpretar los coeficientes estimados en términos de una relación causa efecto?
+
+Definamos el modelo poblacional como aquel que recoge la relación causa efecto. Por ejemplo, decimos que $y$ es función de las variables $x_1$ y $x_2$
+
+\begin{equation*}
+    y=\beta_0+\beta_1x_1+\beta_2x_2+\varepsilon
+\end{equation*}
+
+En este modelo $E(\varepsilon|x_1,x_2)=0$, por lo tanto 
+
+\begin{equation*}
+    E(y|x_1,x_2)=\beta_0+\beta_1x_1
+\end{equation*}
+  
+\end{frame}
+
+\begin{frame}{Efecto causal}
+
+De lo anterior
+
+\begin{equation*}
+    \dfrac{\partial E(y|x_1,x_2)}{\partial x_1}=\beta_1;  \quad \dfrac{\partial E(y|x_1,x_2)}{\partial x_2}=\beta_2
+\end{equation*}
+
+    Cada coeficiente recoge el efecto en el cambio de la media de $y$ atribuible únicamente a la variable $x_k$
+\end{frame}
+
+\begin{frame}{Efecto causal}
+
+Considere ahora el modelo estimable. Es decir, el que puede estimar dados los datos disponibles. Suponga que usted no tiene datos para la variable $x_2$. Por lo tanto su modelo a estimar es
+
+\begin{equation*}
+    y=\beta_0+\beta_1x_1+e
+\end{equation*}
+    En este modelo, ¿el parámetro $\beta_1$ recoge el efecto causal de $x_1$ sobre $y$? No ha incluido $x_2$ aún cuando sabe que esto es importante para explicar $y$. Podemos decir entonces
+
+    \begin{equation*}
+        e=\beta_2x_2+\varepsilon
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Efecto causal}
+
+\begin{align*}
+    E(y|x_1)&=\beta_0+\beta_1x_1+E(e|x_1)\\
+    E(y|x_1)&=\beta_0+\beta_1x_1+E(\beta_2x_2+\varepsilon|x_1)\\
+    E(y|x_1)&=\beta_0+\beta_1x_1+\beta_2E(x_2|x_1)+\E(\varepsilon|x_1)\\
+\end{align*}
+El úlimo término es cero por definición. Luego nos interesa analizar $\beta_2E(x_2|x_1)$
+
+\begin{equation*}
+    \dfrac{\partial E(y|x_1)}{\partial x_1}=\beta_1+\dfrac{\partial E(x_2|x_1)}{\partial x_1}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Efecto causal}
+    \begin{equation*}
+    \dfrac{\partial E(y|x_1)}{\partial x_1}=\beta_1+\dfrac{\partial E(x_2|x_1)}{\partial x_1}
+\end{equation*}
+
+El término $\frac{\partial E(x_2|x_1)}{\partial x_1}$ es cero si no hay ningún tipo de relación entre $x_1$ y $x_2$. En ese caso $\frac{\partial E(y|x_1)}{\partial x_1}=\beta_1$ y por lo tanto con mis datos puedo recuperar el efecto causal
+\end{frame}
+
+\begin{frame}{Efecto causal}
+
+Mensaje
+
+\begin{itemize}
+    \item Con mis datos siempre puedo calcular los coeficientes de un modelo lineal
+    \item Pero, la interpretación adecuada requiere que tenga clara la teoría y las hipótesis
+    \item El análisis con propósitos explicativos es inseparable de la teoría
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Varianza del estimador}
+
+Al igual que en el caso de una sola variable, suponemos que las observaciones son independientes (muestreo aleatorio) y que la varianza de los errores es la misma para todas las observaciones, homocedasticidad. La varianza del estimador del coeficiente $\hat{\beta}_j$ es
+
+\begin{equation*}
+    Var(\hat{\beta}_j)=\dfrac{\sigma^2}{(\sum_{i=1}^n (x_{ij}-\bar{x_j})^2)(1-R^2_j)}
+\end{equation*}
+    donde $R^2$ proviene de una regresión de $x_j$ contra las demás variables independientes. Es decir, que tan correlacionada está la variable $x_j$ con las demás. 
+\end{frame}
+
+
+\begin{frame}{Varianza del estimador}
+
+Analice la relación que tiene sobre la varianza del estimador y por lo tanto sobre las pruebas de hipótesis lo siguiente
+
+\begin{enumerate}
+    \item Aumentar el tamaño de muestra
+    \item Bajo grado de correlación entre las variables explicativas
+\end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Distribución del estimador}
+
+\begin{block}{Normalidad}
+El error del modelo poblacional, $\varepsilon$ es independiente de las variables explicativas y se distribuye $N\sim N(0,\sigma^2)$
+\end{block}
+
+Por lo tanto
+
+\begin{equation*}
+    \hat{\beta}_j\sim N(\beta_j,Var(\hat{\beta}))
+\end{equation*}
+   En consecuencia
+
+   \begin{equation*}
+       (\hat{\beta}_j-\beta_j)/sd(\hat{\beta}_j)\sim N(0,1)
+   \end{equation*}
+
+   \end{frame}
+
+\begin{frame}
+
+De lo anterior
+
+\begin{equation*}
+       (\hat{\beta}_j-\beta_j)/s.e(\hat{\beta}_j)\sim t_{n-k-1}
+   \end{equation*}
+   La implicación es que las estadísticas usuales, $t$ y $F$ son válidas. Con muestras pequeñas la normalidad de los datos en la muestra es importante. Con muestras grandes apelamos a las propiedades asintóticas del estimador. 
+\end{frame}
+
+\begin{frame}{Ejercicios}
+
+\begin{enumerate}
+    \item La base de datos christ.csv contiene los datos del artículo \cite{christ}. Realice la siguiente regresión lineal $cwdbasal=\beta_0+\beta_1ripdens+e$. Interprete el coeficiente estimado $\beta_1$ en términos de su significancia y magnitud. Analice el $R^2$
+    \item La base de datos giri.csv contiene los datos del artículo \cite{GIRI2016416}. Realice la regresión usando como variable dependiente \textit{n.3.LC.PUFA} y como explicativa la variable \textit{treat}. Para esta última, primero debe declararla como factor. Interprete los coeficientes. Analice el estadístico F que aparece en la tabla de resultados ¿Cuál es la hipótesis nula? 
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Ejercicios}
+
+\begin{enumerate}[start=3]
+    \item Usaremos los datos cricket.xlsx del artículo \cite{ercit} para analizar el efecto del número de huevos sobre la distancia de salto en las hembras del grillo \textit{Oecanthus nigricornis}, teniendo en cuenta las diferencias en el tamaño corporal (variable pronotum) y la fuerza de las piernas (variable legmass). Estime el modelo $distance=\beta_0+\beta_1 eggs + \beta_2 pronotum+\beta_3 legmass+e$. Interprete los coeficientes en términos de magnitud y significancia. Siempre tenga en cuenta la hipótesis nula y la alternativa
+    \item En el artículo anterior, el interés de los autores está en la variable eggs. Dado el modelo estimado, ¿qué papel juegan las variables pronotum y legmass en el establecimiento de la un efecto causal de eggs sobre distance? Estie nuevamente el modelo pero no incluya las variables pronotum y legmass ¿Qué puede concluir?
+
+    \end{enumerate}
+    \end{frame}
+    
+    \begin{frame}
+    \begin{enumerate}[start=5]
+    \item El tamaño del cuerpo y la fuerza de las piernas pueden estar altamente correlacionadas. Calcule el coeficiente de correlación entre estas dos variables ¿Qué efecto tiene esta alta correlación sobre los resultados del modelo? Estime nuevamente el modelo pero solo incluya pronotum. Repita el ejercicio, pero esta vez solo incluya legmass (siempre debe incluir eggs). Compare los resultados ¿Qué puede concluir?
+\end{enumerate}
+    
+\end{frame}
+
 
 \printbibliography
 
