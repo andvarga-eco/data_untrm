@@ -10,7 +10,7 @@ Libro de texto
 
 Temas
 
-[1. Introducción al análisis de datos (Cap. 2 y 3)]()
+[1. Introducción al análisis de datos (Cap. 2 y 3)](https://uninorte-my.sharepoint.com/:b:/g/personal/andresmv_uninorte_edu_co/EVfXpkDy3X5Kq-C4deZKdbsBlqoYrEN71QaqHOK4VlXUFQ?e=QvY5a4)
 
 •	Conceptos clave de estadística inferencial
 
