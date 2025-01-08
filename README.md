@@ -55,6 +55,7 @@ Temas
 •	Evaluación del modelo
 
 [Análisis multivariado (Cap. 14 y 15)]()
+
 •	Combinación lineal
 •	Análisis de componentes
 
