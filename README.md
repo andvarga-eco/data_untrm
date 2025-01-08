@@ -26,7 +26,7 @@ Temas
 
 •	Tipos de modelos lineales
 
-[Modelo lineal con un predictor (Cap. 6)]()
+[3. Modelo lineal con un predictor (Cap. 6)]()
 
 •	Predictor continuo
 
@@ -36,7 +36,7 @@ Temas
 
 •	Evaluación del modelo
 
-[Modelos lineales con múltiples predictores (Cap. 8)]()
+[4. Modelos lineales con múltiples predictores (Cap. 8)]()
 
 •	Estimación e interpretación de parámetros
 
@@ -46,7 +46,7 @@ Temas
 
 •	Inferencia
 
-[Modelos lineales mixtos (Cap. 10)]()
+[5. Modelos lineales mixtos (Cap. 10)]()
 
 •	Efectos fijos y aleatorios
 
@@ -54,11 +54,11 @@ Temas
 
 •	Evaluación del modelo
 
-[Análisis multivariado (Cap. 14 y 15)]()
+[6. Análisis multivariado (Cap. 14 y 15)]()
 
 •	Combinación lineal
 •	Análisis de componentes
 
-[Análisis factorial (Cap. 15)]()
+[7. Análisis factorial (Cap. 15)]()
 
-[Análisis de correspondencia (Cap. 15)]()
+[8. Análisis de correspondencia (Cap. 15)]()
