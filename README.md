@@ -13,33 +13,45 @@ Temas
 [1. Introducción al análisis de datos (Cap. 2 y 3)]()
 
 •	Conceptos clave de estadística inferencial
+
 •	Muestreo y diseño de experimentos
+
 •	Tipos de datos y métodos de análisis
 
 [2. Introducción a los modelos lineales (Cap. 4)]()
 
 •	¿Qué es un modelo lineal y para qué sirve?
+
 •	Estimación de parámetros: MCO, ML
+
 •	Tipos de modelos lineales
 
 [Modelo lineal con un predictor (Cap. 6)]()
 
 •	Predictor continuo
+
 •	Predictor categórico (factor)
+
 •	Estimación e interpretación de parámetros
+
 •	Evaluación del modelo
 
 [Modelos lineales con múltiples predictores (Cap. 8)]()
 
 •	Estimación e interpretación de parámetros
+
 •	Valores predichos
+
 •	El término de error
+
 •	Inferencia
 
 [Modelos lineales mixtos (Cap. 10)]()
 
 •	Efectos fijos y aleatorios
+
 •	Estimación y pruebas
+
 •	Evaluación del modelo
 
 [Análisis multivariado (Cap. 14 y 15)]()
