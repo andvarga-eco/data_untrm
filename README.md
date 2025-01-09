@@ -18,7 +18,7 @@ Temas
 
 •	Tipos de datos y métodos de análisis
 
-[2. Introducción a los modelos lineales (Cap. 4)]()
+[2. Introducción a los modelos lineales (Cap. 4)](https://uninorte-my.sharepoint.com/:b:/g/personal/andresmv_uninorte_edu_co/EaiiaIjB7zhEvUyZ6u70VWUBPTJ8CdbT9PM2Lg7fip97bQ?e=9jspad)
 
 •	¿Qué es un modelo lineal y para qué sirve?
 
