@@ -26,7 +26,7 @@ Temas
 
 •	Tipos de modelos lineales
 
-[3. Modelo lineal con un predictor (Cap. 6)]()
+[3. Modelo lineal con un predictor (Cap. 6)](https://uninorte-my.sharepoint.com/:b:/g/personal/andresmv_uninorte_edu_co/EQ5GNEKyeTpCkcinvcMhyV4Br-1SP_ryXa1kKN2BSqOumQ?e=gCWx2P)
 
 •	Predictor continuo
 
