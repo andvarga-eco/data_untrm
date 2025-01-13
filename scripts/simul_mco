@@ -1,0 +1,33 @@
+library(mvtnorm)
+library(dplyr)
+library(ggplot2)
+N<-10000
+coefs<-cbind("hat_beta_1" = numeric(1000), "hat_beta_2" = numeric(1000)) #Vector que guardará los coeficientes
+set.seed(1) # permite reproducir los resultados
+X <- rmvnorm(N, c(50, 100), sigma = cbind(c(10, 2.5), c(2.5, 10))) # generamos X1 y X2
+e <- rnorm(N, sd = 5)
+Y <- 5 + 2.5 * X[, 1] + 3 * X[, 2] + e
+
+xdf<-data.frame(X,Y)
+
+nrsim<-1000 #obtenemos 1000 muestras de nuestra población
+for (i in 1:nrsim){
+  dfs<-sample(c(TRUE,FALSE),nrow(xdf),replace=TRUE,prob=c(0.01,0.99)) #muestra aleatoria, n aprox 100
+  dfs<-xdf[dfs,]
+  ols<-lm(Y~X1+X2,data=dfs) #estimamos para cada muestra generada
+  coefs[i,]<-coef(ols)[-1]  # el valor estimado de b1 y b2 en cada muestra se lleva al vector coefs
+} 
+
+coefs.df<-data.frame(coefs)
+
+
+msd<-coefs.df%>%summarise(b1m=mean(coefs.df$hat_beta_1),
+                          b2m=mean(coefs.df$hat_beta_2),
+                          b1sd=sd(coefs.df$hat_beta_1),
+                          b2sd=sd(coefs.df$hat_beta_1)
+)
+
+ggplot(coefs.df,aes(x=hat_beta_1))+geom_density(fill="lightblue",alpha=0.4)+
+  geom_vline(xintercept=mean(coefs.df$hat_beta_1),linetype=4)+theme_minimal()+
+  labs(title="Distribución del promedio del estimador",subtitle="1000 muestras diferentes",x=expression(beta[1]*estimado))           
+
