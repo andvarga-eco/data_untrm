@@ -36,7 +36,7 @@ Temas
 
 •	Evaluación del modelo
 
-[4. Modelos lineales con múltiples predictores (Cap. 8)]()
+[4. Modelos lineales con múltiples predictores (Cap. 8)](https://uninorte-my.sharepoint.com/:b:/g/personal/andresmv_uninorte_edu_co/EU6ePDdi--dMr0cWMf67XZ0BdoyJskKo6hRORvH8t7PCmQ?e=mCojYV)
 
 •	Estimación e interpretación de parámetros
 
@@ -46,9 +46,9 @@ Temas
 
 •	Inferencia
 
-[5. Modelos lineales mixtos (Cap. 10)]()
+[5. Modelos lineal generalizado para variable categórica (Cap. 13)]()
 
-•	Efectos fijos y aleatorios
+•	Regresión logística
 
 •	Estimación y pruebas
 
