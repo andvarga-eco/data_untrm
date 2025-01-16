@@ -1,0 +1,25 @@
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(stats)
+
+# Cargar los datos
+bloodco2 <- read_excel("/bloodco2.xlsx")
+
+# Análisis gráfico y descriptivo
+ggplot(bloodco2,aes(x=T,y=blood))+geom_point()
+ggplot(bloodco2,aes(x=as.factor(T),y=blood))+geom_boxplot()
+
+stats<-bloodco2%>%group_by(T)%>%summarise(promedio=mean(blood))
+
+# Análisis de regresión lineal y ANOVA
+
+m1<-lm(blood~T,data=bloodco2)       
+summary(m1)
+
+m1.aov<-aov(m1)
+summary(m1.aov)
+
+#Análisis de residuales
+
+plot(m1)
