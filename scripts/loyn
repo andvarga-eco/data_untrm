@@ -1,0 +1,13 @@
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+loyn <- read_csv("C:/Users/andre/OneDrive - Universidad del Norte/Drive/Uninorte/Uninorte-docencia/Doctorado Perú/R/loyn.csv")
+summary(loyn$ABUND)
+sd(loyn$ABUND)
+
+table(loyn$GRAZE)
+loyn$grazef<-as.factor(loyn$GRAZE)
+loyn%>%group_by(grazef)%>%summarise(mabund=mean(ABUND))
+
+ggplot(loyn,aes(x=grazef,y=ABUND))+geom_boxplot()
